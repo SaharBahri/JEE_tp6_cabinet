@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Cabinet Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système de gestion de cabinet</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouvel rendezvous</h2>
+		<div>
+			<form method="post"
+				th:action="@{/api/rendezvous/save}" th:object="${rendezvous}">
+				<div class="form-group">
+					<label for="DateInput">Date</label> 
+					<input
+						type="text" th:field="*{Date}" class="form-control" id="DateInput"
+						aria-describedby="DateHelp" placeholder="Saisir la date"> <small
+						id="DateHelp" class="form-text text-muted">Merci d'écrire la date de rendezvous.</small>
+				</div>
+				<div class="form-group">
+					<label for="patientInput">Patient</label> 
+					<input
+						type="text" th:field="*{patient}" class="form-control" id="patientInput"
+						aria-describedby="patientlHelp" placeholder="Saisir patient"> <small
+						id="patientHelp" class="form-text text-muted">Merci d'écrire le patient de rendezvous</small>
+				</div>
+				<div class="form-group">
+					<label for="medecinInput">Medecin</label> 
+					<input
+						type="text" th:field="*{medecin}" class="form-control" id="medecinInput"
+						aria-describedby="medecinHelp" placeholder="Saisir medecin"> <small
+						id="EmailHelp" class="form-text text-muted">Merci d'écrire le medecin de rendezvous</small>
+				</div>
+				<div class="form-group">
+					<label for="consultationInput">Consultation</label> 
+					<input
+						type="text" th:field="*{consultation}" class="form-control" id="consultationInput"
+						aria-describedby="consultationHelp" placeholder="Saisir consultation"> <small
+						id="consultationHelp" class="form-text text-muted">Merci d'écrire la consultation de rendezvous</small>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>

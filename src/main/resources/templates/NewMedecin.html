@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<title>Cabinet Web Application</title>
+
+	<style>
+		body {
+			padding-top: 50px;
+		}
+
+		.special {
+			padding-top: 50px;
+		}
+	</style>
+	
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système de gestion de cabinet</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Ajout d'un nouvel medecin</h2>
+		<div>
+			<form method="post" th:action="@{/api/medecin/save}" th:object="${medecin}">
+				<div class="form-group">
+					<label for="NameInput">Nom</label>
+					<input type="text" th:field="*{Name}" class="form-control" id="NameInput"
+						aria-describedby="NameHelp" placeholder="Saisir le nom"> <small id="NameHelp"
+						class="form-text text-muted">Merci d'écrire le nom de medecin.</small>
+				</div>
+				<div class="form-group">
+					<label for="EmailInput">Email</label>
+					<input type="text" th:field="*{Email}" class="form-control" id="EmailInput"
+						aria-describedby="EmailHelp" placeholder="Saisir l'adresse email"> <small id="EmailHelp"
+						class="form-text text-muted">Merci d'écrire l'adresse email de medecin.</small>
+				</div>
+				<div class="form-group">
+					<label for="specialityInput">Speciality</label>
+					<select th:field="*{speciality}" id="specialityInput" class="form-control" aria-describedby="specialityHelp">
+						<!-- Options will be loaded dynamically here -->
+						<option>Speciality _1</option>
+					</select>
+					<small id="specialityHelp" class="form-text text-muted">Merci de sélectionner la speciality du
+						médecin.</small>
+				</div>
+
+
+				<button type="submit" class="btn btn-primary">Créer</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// Fetch value from NewSpeciality.html
+			$.ajax({
+				url: 'NewSpeciality.html', // Replace with the correct URL
+				type: 'GET',
+				success: function (data) {
+					// Assuming the text input has an ID 'newSpecialityInput'
+					var newSpeciality = $(data).find('#NewSpecialityInput').val();
+
+					// Add the retrieved value as an option to the dropdown list
+					$('#NewSpecialityInput').append('<option value="' + newSpeciality + '">' + newSpeciality + '</option>');
+				},
+				error: function () {
+					console.error('Error fetching data.');
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
